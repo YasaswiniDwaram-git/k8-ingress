@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  labels:
+    app: app1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: api
+      project: deploy
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-alpine3.20
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: app1-service
+spec:
+  selector:
+    app: app1
+  ports:
+   - name: nginx-port
+     protocol: TCP
+     port: 80
+     targetPort: 80
+      
+
