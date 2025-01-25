@@ -8,8 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      tier: api
-      project: deploy
+      app: app1
   template:
     metadata:
       labels:
